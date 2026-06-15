@@ -1,0 +1,29 @@
+name: B12 Submission
+
+on:
+  workflow_dispatch:
+
+jobs:
+  submit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Submit application
+        env:
+          NAME: "Rohit Patil"
+          EMAIL: "rohitpatil.rp187@gmail.com"
+          RESUME_LINK: "https://www.linkedin.com/in/rohit-patil-493220205/"
+          REPOSITORY_LINK: "https://github.com/rohitpatilrp010-netizen/b12-ci-submission"
+          ACTION_RUN_LINK: "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+        run: python submit.py
